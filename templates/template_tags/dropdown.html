@@ -1,0 +1,20 @@
+{% load menu_tags %}
+<ul class="dropdown-menu">
+{% for submenu in menu.child.all %}
+    {% if submenu.child.all %}
+        <li class="dropdown">
+            <a class="" href="{{submenu.get_url}}">{{ submenu.title }}
+            </a>
+                <a class="dropdown-toggle toggle" data-toggle="dropdown" href="#">
+                    <span class="caret">
+                    </span>
+                </a>
+            {% dropdown submenu %}
+        </li>
+    {% else %}
+        <li>
+            <a tabindex="-1" href="{{submenu.get_url}}">{{ submenu.title }}</a>
+        </li>
+    {% endif %}
+{% endfor %}
+</ul>
